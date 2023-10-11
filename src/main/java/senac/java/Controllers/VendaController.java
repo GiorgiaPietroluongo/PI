@@ -16,21 +16,21 @@ public class VendaController {
 
             if ("GET".equals(exchange.getRequestMethod())) {
                 response = "Essa e a rota de vendas - GET";
-                res.enviarResponse(exchange, response);
+                res.enviarResponse(exchange, response,200);
             } else if ("POST".equals(exchange.getRequestMethod())) {
                 response = "Essa e a rota de vendas - POST";
-                res.enviarResponse(exchange, response);
+                res.enviarResponse(exchange, response,200);
             } else if ("PUT".equals(exchange.getRequestMethod())) {
                 response = "Essa é a rota de vendas - PUT";
-                res.enviarResponse(exchange, response);
+                res.enviarResponse(exchange, response,200);
             } else if ("DELETE".equals(exchange.getRequestMethod())) {
                 response = "Essa e a rota de vendas - DELETE";
-                res.enviarResponse(exchange, response);
+                res.enviarResponse(exchange, response,200);
             } else {
                 response = "Rota vendas - ERRO!" +
                         " O metodo utilizado foi: " + exchange.getRequestMethod();
                 ;
-                res.enviarResponse(exchange, response);
+                res.enviarResponse(exchange, response,405);
             }
         }
     }

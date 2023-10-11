@@ -13,20 +13,20 @@ public class EstoqueController {
 
             if("GET".equals(exchange.getRequestMethod())){
                 response = "Essa e a rota de estoque - GET";
-                res. enviarResponse(exchange, response);
+                res. enviarResponse(exchange, response, 200);
             }else if ("POST".equals(exchange.getRequestMethod())){
                 response = "Essa e a rota de estoque - POST";
-                res. enviarResponse(exchange, response);
+                res. enviarResponse(exchange, response,200);
             } else if ("PUT".equals(exchange.getRequestMethod())) {
                 response = "Essa e a rota de estoque - PUT";
-                res. enviarResponse(exchange, response);
+                res. enviarResponse(exchange, response,200);
             } else if ("DELETE".equals(exchange.getRequestMethod())) {
                 response = "Essa e a rota de estoque - DELETE";
-                res. enviarResponse(exchange, response);
+                res. enviarResponse(exchange, response,200);
             }else {
                 response = "Rota estoque - ERRO!" +
                         " O metodo utilizado foi: " + exchange.getRequestMethod();;
-                res. enviarResponse(exchange, response);
+                res. enviarResponse(exchange, response,405);
             }
         }
 
