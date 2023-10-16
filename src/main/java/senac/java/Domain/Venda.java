@@ -9,11 +9,11 @@ import java.util.List;
 
 public class Venda {
     int id;
-    String user = "";
-    String products = "";
-    boolean finishedSale = false;
-    double discount = 0.0;
-    String Sale;
+    public String user = "";
+    public String products = "";
+    public boolean finishedSale = false;
+    public  double discount = 0.0;
+    public String Sale;
 
     public Venda(){
 

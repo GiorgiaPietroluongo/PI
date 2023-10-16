@@ -22,12 +22,6 @@ public class VendaController {
             if("GET".equals(exchange.getRequestMethod())) {
                 // System.out.println("Método GET");
                 List<Venda> getAllFromArray = Venda.getAllVenda(vendaList);
-                Object teste = getAllFromArray.toArray();
-
-                System.out.println();
-                System.out.println("Print de object "+ teste);
-                System.out.println();
-                System.out.println();
 
                 if (!getAllFromArray.isEmpty()) {
                     for (Venda venda : getAllFromArray) {
