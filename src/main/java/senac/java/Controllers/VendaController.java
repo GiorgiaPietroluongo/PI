@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
 public class VendaController {
     public static List<Venda> vendaList = new ArrayList<>();
@@ -18,8 +19,37 @@ public class VendaController {
         @Override
         public void handle(HttpExchange exchange) throws IOException {
 
-            if("GET".equals(exchange.getRequestMethod())){
-                System.out.println("Método GET");
+            if("GET".equals(exchange.getRequestMethod())) {
+                // System.out.println("Método GET");
+                List<Venda> getAllFromArray = Venda.getAllVenda(vendaList);
+                Object teste = getAllFromArray.toArray();
+
+                System.out.println();
+                System.out.println("Print de object "+ teste);
+                System.out.println();
+                System.out.println();
+
+                if (!getAllFromArray.isEmpty()) {
+                    for (Venda venda : getAllFromArray) {
+                        System.out.println("Nome: " + venda.getUser());
+                        System.out.println("Produtos: " + venda.getProducts());
+                        System.out.println("Compra final: " + venda.getfinishedSale());
+                        System.out.println("Desconto: " + venda.getDiscount());
+                        System.out.println("Compra:" + venda.getSale());
+                        System.out.println();
+                        System.out.println("-----------------------------------------------------");
+                        System.out.println();
+                    }
+                    String response = "Dados encontrados com sucesso!";
+                    res.enviarResponse(exchange, response, 200);
+
+
+            }else{
+                String response = "Dados não encontrados!";
+                res.enviarResponse(exchange, response, 400);
+                }
+
+
             }else if("POST".equals(exchange.getRequestMethod()));{
                 try(InputStream requestBody = exchange.getRequestBody()){
                     JSONObject json = new JSONObject(new String(requestBody.readAllBytes()));
@@ -29,7 +59,7 @@ public class VendaController {
                             json.getString("products"),
                             json.getBoolean("finishedSale"),
                             json.getDouble("discount"),
-                            json.getDate("Sale")
+                            json.getString("Sale")
 
                             );
 

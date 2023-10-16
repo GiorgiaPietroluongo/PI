@@ -13,13 +13,13 @@ public class Venda {
     String products = "";
     boolean finishedSale = false;
     double discount = 0.0;
-    Date Sale;
+    String Sale;
 
     public Venda(){
 
     }
     public Venda(String user, String products,
-                 boolean finishedSale, double discount, Date Sale){
+                 boolean finishedSale, double discount, String Sale){
         this.user = user;
         this.products = products;
         this.finishedSale = finishedSale;
@@ -51,10 +51,10 @@ public class Venda {
     public void setDiscount(double discount){
         this.discount = discount;
     }
-    public Date getSale(){
+    public String getSale(){
         return Sale;
     }
-    public void setSale(Date Sale){
+    public void setSale(String Sale){
         this.Sale = Sale;
     }
     public JSONObject toJson(){
