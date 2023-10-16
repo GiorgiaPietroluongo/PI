@@ -2,6 +2,8 @@ package senac.java.Domain;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class Usuarios {
     int id;
     String name = "";
@@ -30,4 +32,11 @@ public class Usuarios {
 
         return json;
     }
+
+//    public ArrayList userList(){
+//        ArrayList list = new ArrayList();
+//        list.getClass();
+//
+//        return list;
+//    }
 }

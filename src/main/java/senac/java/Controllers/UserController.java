@@ -11,7 +11,7 @@ import java.util.List;
 
 import com.sun.net.httpserver.HttpExchange;
 public class UserController {
-    private static List<Usuarios> usersList = new ArrayList<>();
+    public static List<Usuarios> usersList = new ArrayList<>();
 
     public static class UserHandler implements HttpHandler{
         static ResponseEndPoints res = new ResponseEndPoints();
@@ -20,8 +20,10 @@ public class UserController {
         public void handle(HttpExchange exchange) throws IOException{
             String response = "";
             if("GET".equals(exchange.getRequestMethod())){
+
                 response = "Essa é a rota de usuario - GET";
                 res. enviarResponse(exchange, response,200);
+                usersList.reversed();
             }else if ("POST".equals(exchange.getRequestMethod())) {
                 Usuarios user = null;
                 try (InputStream requestBody = exchange.getRequestBody()) {
@@ -39,7 +41,7 @@ public class UserController {
                     user.toJson();
                     response = "Dados enviados com sucesso";
 //                    res.enviarResponse(exchange, response, 201);
-                    res.enviarResponseJson(exchange, user.toJson());
+                    res.enviarResponseJson(exchange, user.toJson(),200);
 
 
                 } catch (Exception e) {
