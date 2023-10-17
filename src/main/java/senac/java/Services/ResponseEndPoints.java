@@ -24,5 +24,4 @@ public class ResponseEndPoints {
         os.write(responseBytes);
         os.close();
     }
-
-    }
+}

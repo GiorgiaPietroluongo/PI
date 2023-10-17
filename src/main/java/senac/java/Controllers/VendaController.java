@@ -40,7 +40,7 @@ public class VendaController {
 
             }else{
                 String response = "Dados não encontrados!";
-                res.enviarResponse(exchange, response, 400);
+                res.enviarResponse(exchange, response, 200);
                 }
 
 

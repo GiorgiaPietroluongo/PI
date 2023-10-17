@@ -17,10 +17,10 @@ public class EstoqueController {
             }else if ("POST".equals(exchange.getRequestMethod())){
                 response = "Essa e a rota de estoque - POST";
                 res. enviarResponse(exchange, response,200);
-            } else if ("PUT".equals(exchange.getRequestMethod())) {
+            }else if ("PUT".equals(exchange.getRequestMethod())) {
                 response = "Essa e a rota de estoque - PUT";
                 res. enviarResponse(exchange, response,200);
-            } else if ("DELETE".equals(exchange.getRequestMethod())) {
+            }else if ("DELETE".equals(exchange.getRequestMethod())) {
                 response = "Essa e a rota de estoque - DELETE";
                 res. enviarResponse(exchange, response,200);
             }else {
@@ -29,6 +29,5 @@ public class EstoqueController {
                 res. enviarResponse(exchange, response,405);
             }
         }
-
     }
 }
