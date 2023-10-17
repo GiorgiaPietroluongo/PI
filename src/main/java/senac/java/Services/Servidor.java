@@ -10,7 +10,7 @@ public class Servidor {
 
     public void apiServer() throws IOException{
 
-        HttpServer server = HttpServer.create(new InetSocketAddress(3000),
+        HttpServer server = HttpServer.create(new InetSocketAddress(4000),
                 0);
 
         server.createContext("/api/users", new UserController.UserHandler());
