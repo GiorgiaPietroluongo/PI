@@ -1,12 +1,13 @@
 package senac.java.Services;
 import com.sun.net.httpserver.HttpExchange;
 import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.OutputStream;
 
 public class ResponseEndPoints {
 
-    public static void enviarResponse(HttpExchange exchange , String response, Integer statusCode) throws IOException {
+    public static void enviarResponse(HttpExchange exchange, String response, Integer statusCode) throws IOException {
 
         exchange.sendResponseHeaders(statusCode, response.getBytes().length);
 

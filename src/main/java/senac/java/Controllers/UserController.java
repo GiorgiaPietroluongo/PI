@@ -25,11 +25,11 @@ public class UserController {
                 res. enviarResponse(exchange, response,200);
                 usersList.reversed();
             }else if ("POST".equals(exchange.getRequestMethod())) {
-                Usuarios user = null;
+
                 try (InputStream requestBody = exchange.getRequestBody()) {
                     JSONObject json = new JSONObject(new String(requestBody.readAllBytes()));
 
-                    user = new Usuarios(
+                    Usuarios user = new Usuarios(
 
                             json.getString("name"),
                             json.getString("lastName"),
@@ -47,7 +47,7 @@ public class UserController {
                 } catch (Exception e) {
                     String resposta = e.toString();
                     res.enviarResponse(exchange, resposta, 405);
-                    System.out.println("O erro foi: " + user.toJson());
+
                 }
 //                res. enviarResponse(exchange, response);
 //                response = "Essa é a rota de usuario - POST";

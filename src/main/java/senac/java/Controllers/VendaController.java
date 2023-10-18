@@ -1,5 +1,4 @@
 package senac.java.Controllers;
-
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import senac.java.Domain.Venda;
@@ -9,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Arrays;
+
 
 public class VendaController {
     public static List<Venda> vendaList = new ArrayList<>();
@@ -22,6 +21,7 @@ public class VendaController {
             if("GET".equals(exchange.getRequestMethod())) {
                 // System.out.println("Método GET");
                 List<Venda> getAllFromArray = Venda.getAllVenda(vendaList);
+                Venda vendaJson = new Venda();
 
                 if (!getAllFromArray.isEmpty()) {
                     for (Venda venda : getAllFromArray) {
@@ -31,16 +31,29 @@ public class VendaController {
                         System.out.println("Desconto: " + venda.getDiscount());
                         System.out.println("Compra:" + venda.getSale());
                         System.out.println();
-                        System.out.println("-----------------------------------------------------");
+                        System.out.println("------------------------------------------");
                         System.out.println();
+
+
+
+
                     }
-                    String response = "Dados encontrados com sucesso!";
-                    res.enviarResponse(exchange, response, 200);
+
+
+
+                   res.enviarResponseJson(exchange, vendaJson.arrayToJson(getAllFromArray), 200);
+                  
+//                    res.enviarResponseJson(exchange, jsonResponse, 200);
+
+
+
+//                    String response = "Dados encontrados com sucesso!";
+//                    res.enviarResponse(exchange, response, 200);
 
 
             }else{
-                String response = "Dados não encontrados!";
-                res.enviarResponse(exchange, response, 200);
+                    String response = "Dados não encontrados!";
+                    res.enviarResponse(exchange, response, 200);
                 }
 
 
@@ -58,7 +71,9 @@ public class VendaController {
                             );
 
                     vendaList.add(venda);
-                    res.enviarResponseJson(exchange,venda.toJson(), 201);
+
+                    System.out.println(vendaList);
+                    res.enviarResponseJson(exchange, venda.toJson(vendaList), 201);
 
                 }catch(Exception e){
                         String response = e.toString();

@@ -23,20 +23,15 @@ public class Servidor {
         server.createContext("/api/user", exchange -> {
             configureCorsHeads(exchange);
             userHandler.handle(exchange);
-
         });
-        server.createContext("/api/user", exchange -> {
+        server.createContext("/api/estoque", exchange -> {
             configureCorsHeads(exchange);
             estoqueHandler.handle(exchange);
-
         });
-        server.createContext("/api/user", exchange -> {
+        server.createContext("/api/venda", exchange -> {
             configureCorsHeads(exchange);
             vendedorHandler.handle(exchange);
-
         });
-
-
 
         server.setExecutor(null);
         server.start();
@@ -46,6 +41,6 @@ public class Servidor {
     private void configureCorsHeads(HttpExchange exchange) {
         Headers headers = exchange.getResponseHeaders();
         headers.set("Access-Control-Allow-Origin", "*");
-        headers.set("Access-Control-Allow-Methods", "GET, OPTIONS, POST, PUT, DELETE");
+        headers.set("Access-Control-Allow-Methods", "GET, OPTIONS, PATCH, POST, PUT, DELETE");
     }
 }

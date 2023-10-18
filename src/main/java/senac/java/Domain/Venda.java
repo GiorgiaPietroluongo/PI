@@ -2,9 +2,6 @@ package senac.java.Domain;
 
 import org.json.JSONObject;
 
-import java.util.Date;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Venda {
@@ -57,7 +54,7 @@ public class Venda {
     public void setSale(String Sale){
         this.Sale = Sale;
     }
-    public JSONObject toJson(){
+    public JSONObject toJson(List<Venda> arrayToJson){
         JSONObject json = new JSONObject();
         json.put("user", user);
         json.put("products",products);
@@ -65,6 +62,25 @@ public class Venda {
         json.put("discount", discount);
         json.put("Sale",Sale);
         return json;
+    }
+
+    public JSONObject arrayToJson(List<Venda> vendaList) {
+        JSONObject json = new JSONObject();
+
+
+        if (!vendaList.isEmpty()) {
+            for (Venda venda : vendaList) {
+                json.put("user", venda.getUser());
+                json.put("products", venda.getProducts());
+                json.put("finishedSale", venda.getfinishedSale());
+                json.put("discount", venda.getDiscount());
+                json.put("Sale", venda.getSale());
+            }
+            return json;
+
+        }else{
+            return null;
+        }
     }
     public static Venda getVenda(int index, List<Venda> vendaList){
         if(index >=0 && index < vendaList.size()){
