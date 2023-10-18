@@ -68,16 +68,18 @@ public class Venda {
         JSONObject json = new JSONObject();
 
 
+
         if (!vendaList.isEmpty()) {
             for (Venda venda : vendaList) {
+                JSONObject js = new JSONObject();
                 json.put("user", venda.getUser());
                 json.put("products", venda.getProducts());
                 json.put("finishedSale", venda.getfinishedSale());
                 json.put("discount", venda.getDiscount());
                 json.put("Sale", venda.getSale());
+                json.put("Other",js);
             }
             return json;
-
         }else{
             return null;
         }

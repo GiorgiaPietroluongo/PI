@@ -33,16 +33,9 @@ public class VendaController {
                         System.out.println();
                         System.out.println("------------------------------------------");
                         System.out.println();
-
-
-
-
                     }
+                    res.enviarResponseJson(exchange, vendaJson.arrayToJson(getAllFromArray), 200);
 
-
-
-                   res.enviarResponseJson(exchange, vendaJson.arrayToJson(getAllFromArray), 200);
-                  
 //                    res.enviarResponseJson(exchange, jsonResponse, 200);
 
 
