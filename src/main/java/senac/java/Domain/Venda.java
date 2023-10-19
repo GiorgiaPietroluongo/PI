@@ -68,7 +68,7 @@ public class Venda {
         JSONObject json = new JSONObject();
 
         if (!vendaList.isEmpty()) {
-            var keyJson = 1;
+            var keyJson = 0;
             for (Venda venda : vendaList) {
                 JSONObject js = new JSONObject();
                 js.put("user", venda.getUser());
@@ -76,10 +76,10 @@ public class Venda {
                 js.put("finishedSale", venda.getfinishedSale());
                 js.put("discount", venda.getDiscount());
                 js.put("Sale", venda.getSale());
-                keyJson++;
+
+
                 json.put(String.valueOf(keyJson), js);
-
-
+                keyJson++;
             }
             return json;
         }else{
