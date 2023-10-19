@@ -67,17 +67,19 @@ public class Venda {
     public JSONObject arrayToJson(List<Venda> vendaList) {
         JSONObject json = new JSONObject();
 
-
-
         if (!vendaList.isEmpty()) {
+            var keyJson = 1;
             for (Venda venda : vendaList) {
                 JSONObject js = new JSONObject();
-                json.put("user", venda.getUser());
-                json.put("products", venda.getProducts());
-                json.put("finishedSale", venda.getfinishedSale());
-                json.put("discount", venda.getDiscount());
-                json.put("Sale", venda.getSale());
-                json.put("Other",js);
+                js.put("user", venda.getUser());
+                js.put("products", venda.getProducts());
+                js.put("finishedSale", venda.getfinishedSale());
+                js.put("discount", venda.getDiscount());
+                js.put("Sale", venda.getSale());
+                keyJson++;
+                json.put(String.valueOf(keyJson), js);
+
+
             }
             return json;
         }else{
