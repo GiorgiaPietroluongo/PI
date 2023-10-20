@@ -70,7 +70,14 @@ public class VendaController {
 
                 }catch(Exception e){
                         String response = e.toString();
-                    res.enviarResponse(exchange,response,405);
+                        String exception = e.toString();
+
+                        System.out.println(exception);
+
+                        System.out.println("Cheguei no catch do post");
+                        System.out.println(response);
+                        System.out.println("_______________________________");
+                    res.enviarResponse(exchange,response,200);
                 }
             }
 //            String response = "";
