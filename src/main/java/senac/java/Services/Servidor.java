@@ -40,8 +40,14 @@ public class Servidor {
 
     private void configureCorsHeads(HttpExchange exchange) {
         Headers headers = exchange.getResponseHeaders();
-        headers.set("Access-Control-Allow-Origin", "*");
+        String requestOrigin = exchange.getRequestHeaders().getFirst("Origin");
+        if(requestOrigin != null){
+    headers.set("Access-Control-Allow-Origin", requestOrigin);
+        }
+
         headers.set("Access-Control-Allow-Methods", "GET, OPTIONS, PATCH, POST, PUT, DELETE");
-        headers.set("Access-Control-Allow-Headers", "Content-Type");
+        headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+        headers.set("Access-Control-Allow-Credentials", "true");
+        headers.set("Access-Control-Max-Age", "3600");
     }
 }

@@ -44,21 +44,21 @@ public class VendaController {
 //                    res.enviarResponse(exchange, response, 200);
 
 
-            }else{
+                }else {
                     String response = "Dados não encontrados!";
                     res.enviarResponse(exchange, response, 200);
                 }
 
 
-            }else if("POST".equals(exchange.getRequestMethod()));{
+            }else if ("POST".equals(exchange.getRequestMethod())){
                 try(InputStream requestBody = exchange.getRequestBody()){
                     JSONObject json = new JSONObject(new String(requestBody.readAllBytes()));
 
                     Venda venda = new Venda(
                             json.getString("user"),
                             json.getString("products"),
-                            json.getBoolean("finishedSale"),
-                            json.getDouble("discount"),
+                            json.getString("finishedSale"),
+                            json.getString("discount"),
                             json.getString("Sale")
 
                             );
@@ -66,7 +66,7 @@ public class VendaController {
                     vendaList.add(venda);
 
                     System.out.println(vendaList);
-                    res.enviarResponseJson(exchange, venda.toJson(vendaList), 201);
+                    res.enviarResponseJson(exchange, venda.toJson(vendaList), 200);
 
                 }catch(Exception e){
                         String response = e.toString();
@@ -79,27 +79,12 @@ public class VendaController {
                         System.out.println("_______________________________");
                     res.enviarResponse(exchange,response,200);
                 }
+
+            }else if ("OPTIONS".equals(exchange.getRequestMethod())) {
+                exchange.sendResponseHeaders(204, -1);
+                exchange.close();
+                return;
             }
-//            String response = "";
-//
-//            if ("GET".equals(exchange.getRequestMethod())) {
-//                response = "Essa e a rota de vendas - GET";
-//                res.enviarResponse(exchange, response,200);
-//            } else if ("POST".equals(exchange.getRequestMethod())) {
-//                response = "Essa e a rota de vendas - POST";
-//                res.enviarResponse(exchange, response,200);
-//            } else if ("PUT".equals(exchange.getRequestMethod())) {
-//                response = "Essa é a rota de vendas - PUT";
-//                res.enviarResponse(exchange, response,200);
-//            } else if ("DELETE".equals(exchange.getRequestMethod())) {
-//                response = "Essa e a rota de vendas - DELETE";
-//                res.enviarResponse(exchange, response,200);
-//            } else {
-//                response = "Rota vendas - ERRO!" +
-//                        " O metodo utilizado foi: " + exchange.getRequestMethod();
-//                ;
-//                res.enviarResponse(exchange, response,405);
-//            }
-        }
+       }
     }
 }

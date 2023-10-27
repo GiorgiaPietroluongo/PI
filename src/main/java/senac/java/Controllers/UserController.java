@@ -46,7 +46,7 @@ public class UserController {
 
                 } catch (Exception e) {
                     String resposta = e.toString();
-                    res.enviarResponse(exchange, resposta, 405);
+                    res.enviarResponse(exchange, resposta, 200);
 
                 }
 //                res. enviarResponse(exchange, response);
@@ -60,7 +60,7 @@ public class UserController {
             }else {
                 response = "Rota usuario - ERRO!" +
                         " O metodo utilizado foi: " + exchange.getRequestMethod();;
-                res. enviarResponse(exchange, response,405);
+                res. enviarResponse(exchange, response,200);
             }
         }
     }

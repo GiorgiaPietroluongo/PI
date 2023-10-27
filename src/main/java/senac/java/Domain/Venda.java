@@ -8,15 +8,15 @@ public class Venda {
     int id;
     public String user = "";
     public String products = "";
-    public boolean finishedSale = false;
-    public  double discount = 0.0;
+    public String finishedSale = "";
+    public  String discount = "";
     public String Sale;
 
     public Venda(){
 
     }
     public Venda(String user, String products,
-                 boolean finishedSale, double discount, String Sale){
+                 String finishedSale, String discount, String Sale){
         this.user = user;
         this.products = products;
         this.finishedSale = finishedSale;
@@ -36,16 +36,16 @@ public class Venda {
     public void setProducts(String products){
         this.products = products;
     }
-    public boolean getfinishedSale(){
+    public String getfinishedSale(){
         return finishedSale;
     }
-    public void setFinishedSale(boolean finishedSale){
+    public void setFinishedSale(String finishedSale){
         this.finishedSale = finishedSale;
     }
-    public double getDiscount(){
+    public String getDiscount(){
         return discount;
     }
-    public void setDiscount(double discount){
+    public void setDiscount(String discount){
         this.discount = discount;
     }
     public String getSale(){
