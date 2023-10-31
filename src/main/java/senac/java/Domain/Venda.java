@@ -7,21 +7,22 @@ import java.util.List;
 public class Venda {
     int id;
     public String user = "";
-    public String products = "";
-    public String finishedSale = "";
-    public  String discount = "";
-    public String Sale;
+    public String codigo = "";
+
+    public  String entrada = "";
+    public String saida = "";
+    public String totalVendas = "";
 
     public Venda(){
 
     }
-    public Venda(String user, String products,
-                 String finishedSale, String discount, String Sale){
+    public Venda(String user, String codigo,
+                 String totalVendas, String entrada, String saida){
         this.user = user;
-        this.products = products;
-        this.finishedSale = finishedSale;
-        this.discount = discount;
-        this.Sale = Sale;
+        this.codigo = codigo;
+        this.totalVendas = totalVendas;
+        this.entrada = entrada;
+        this.saida = saida;
     }
 
     public String getUser(){
@@ -31,36 +32,36 @@ public class Venda {
         this.user = user;
     }
     public String getProducts(){
-        return products;
+        return codigo;
     }
-    public void setProducts(String products){
-        this.products = products;
+    public void setCodigo(String codigo){
+        this.codigo = codigo;
     }
-    public String getfinishedSale(){
-        return finishedSale;
+    public String gettotalVendas(){
+        return totalVendas;
     }
-    public void setFinishedSale(String finishedSale){
-        this.finishedSale = finishedSale;
+    public void settotalVendas(String totalVendas){
+        this.totalVendas = totalVendas;
     }
-    public String getDiscount(){
-        return discount;
+    public String getentrada(){
+        return entrada;
     }
-    public void setDiscount(String discount){
-        this.discount = discount;
+    public void setentrada(String entrada){
+        this.entrada = entrada;
     }
-    public String getSale(){
-        return Sale;
+    public String getsaida(){
+        return saida;
     }
-    public void setSale(String Sale){
-        this.Sale = Sale;
+    public void setsaida(String saida){
+        this.saida = saida;
     }
     public JSONObject toJson(List<Venda> arrayToJson){
         JSONObject json = new JSONObject();
         json.put("user", user);
-        json.put("products",products);
-        json.put("finishedSale", finishedSale);
-        json.put("discount", discount);
-        json.put("Sale",Sale);
+        json.put("products",codigo);
+        json.put("finishedSale", totalVendas);
+        json.put("entrada", entrada);
+        json.put("saida",saida);
         return json;
     }
 
@@ -72,10 +73,10 @@ public class Venda {
             for (Venda venda : vendaList) {
                 JSONObject js = new JSONObject();
                 js.put("user", venda.getUser());
-                js.put("products", venda.getProducts());
-                js.put("finishedSale", venda.getfinishedSale());
-                js.put("discount", venda.getDiscount());
-                js.put("Sale", venda.getSale());
+                js.put("codigo", venda.getProducts());
+                js.put("totalvendas", venda.gettotalVendas());
+                js.put("discount", venda.getentrada());
+                js.put("saida", venda.getsaida());
 
 
                 json.put(String.valueOf(keyJson), js);

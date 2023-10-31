@@ -9,14 +9,16 @@ public class Estoque {
     String name = "";
     String factory = "";
     String quantity = "";
+    String codBarras = "";
 
     public Estoque(){
 
     }
-    public Estoque(String name, String factory, String quantity){
+    public Estoque(String name, String factory, String quantity, String codBarras){
         this.name = name;
         this.factory = factory;
         this.quantity= quantity;
+        this.codBarras = codBarras;
 
     }
 
@@ -26,6 +28,8 @@ public class Estoque {
     public void setFactory(String factory){this.factory = factory;}
     public String getQuantity(){return quantity;}
     public void setQuantity(String quantity){this.quantity = factory;}
+    public String getCodBarras(){return codBarras;}
+    public void setCodBarras(String codBarras){this.codBarras =codBarras;}
 
     public JSONObject toJson(List<Estoque> estoqueList){
         JSONObject json = new JSONObject();
@@ -33,6 +37,7 @@ public class Estoque {
         json.put("user", name);
         json.put("factory",factory);
         json.put("quantity", quantity);
+        json.put("codBarras", codBarras);
         return json;
     }
 
@@ -46,6 +51,7 @@ public class Estoque {
                 js.put("name", estoque.getName());
                 js.put("factory", estoque.getFactory());
                 js.put("quantity", estoque.getQuantity());
+                js.put("codBarras", estoque.getCodBarras());
 
                 json.put(String.valueOf(keysJson), js);
                 keysJson++;

@@ -34,6 +34,7 @@ public class EstoqueController {
                         System.out.println("Nome: " + estoque.getName());
                         System.out.println("Fábrica: " + estoque.getFactory());
                         System.out.println("Quantidade: " + estoque.getQuantity());
+                        System.out.println("Código de barra: " + estoque.getCodBarras());
                         System.out.println();
                         System.out.println("------------------------------------------");
                         System.out.println();
@@ -66,7 +67,8 @@ public class EstoqueController {
                     Estoque estoque = new Estoque(
                             json.getString("name"),
                             json.getString("factory"),
-                            json.getString("quantity")
+                            json.getString("quantity"),
+                            json.getString("codBarras")
                     );
                     estoqueList.add(estoque);
 

@@ -33,10 +33,16 @@ public class UserController {
 
                             json.getString("name"),
                             json.getString("lastName"),
+                            json.getString("genero"),
+                            json.getString("datanasc"),
+                            json.getString("email"),
+                            json.getString("estado"),
+                            json.getString("cidade"),
                             json.getString("cpf"),
-                            json.getString("email")
+                            json.getString("telefone")
 
-                    );
+
+                            );
                     usersList.add(user);
                     user.toJson();
                     response = "Dados enviados com sucesso";

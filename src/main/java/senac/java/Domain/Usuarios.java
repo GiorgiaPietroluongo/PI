@@ -8,18 +8,29 @@ public class Usuarios {
     int id;
     String name = "";
     String lastName = "";
-    String cpf = "";
+    String genero = "";
+    String datanasc = "";
     String email = "";
+    String estado = "";
+    String cidade = "";
+    String cpf = "";
+    String telefone = "";
 
     public Usuarios(){
 
     }
-    public Usuarios(String name, String lastName,
-                    String cpf, String email){
+    public Usuarios(String name, String lastName, String genero, String datanasc,
+                    String email, String estado, String cidade ,String cpf, String telefone){
         this.name= name;
         this.lastName = lastName;
-        this.cpf = cpf;
+        this.genero = genero;
+        this.datanasc = datanasc;
         this.email = email;
+        this.estado = estado;
+        this.cidade = cidade;
+        this.cpf = cpf;
+        this.telefone= telefone;
+
 
 
     }
@@ -27,8 +38,13 @@ public class Usuarios {
         JSONObject json = new JSONObject();
         json.put("name",name);
         json.put("last_name", lastName);
-        json.put("cpf", cpf);
+        json.put("genero", genero);
+        json.put("datanasc", datanasc);
         json.put("email", email);
+        json.put("estado", estado);
+        json.put("cidade", cidade);
+        json.put("cpf", cpf);
+        json.put("telefone", telefone);
 
         return json;
     }

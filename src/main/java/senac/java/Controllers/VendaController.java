@@ -27,9 +27,9 @@ public class VendaController {
                     for (Venda venda : getAllFromArray) {
                         System.out.println("Nome: " + venda.getUser());
                         System.out.println("Produtos: " + venda.getProducts());
-                        System.out.println("Compra final: " + venda.getfinishedSale());
-                        System.out.println("Desconto: " + venda.getDiscount());
-                        System.out.println("Compra:" + venda.getSale());
+                        System.out.println("Compra final: " + venda.gettotalVendas());
+                        System.out.println("Desconto: " + venda.getentrada());
+                        System.out.println("Compra:" + venda.getsaida());
                         System.out.println();
                         System.out.println("------------------------------------------");
                         System.out.println();
