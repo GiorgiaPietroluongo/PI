@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Venda {
     int id;
-    public String user = "";
+    public String name = "";
     public String codigo = "";
 
     public  String entrada = "";
@@ -18,18 +18,18 @@ public class Venda {
     }
     public Venda(String user, String codigo,
                  String totalVendas, String entrada, String saida){
-        this.user = user;
+        this.name = user;
         this.codigo = codigo;
         this.totalVendas = totalVendas;
         this.entrada = entrada;
         this.saida = saida;
     }
 
-    public String getUser(){
-        return user;
+    public String getName(){
+        return name;
     }
-    public void setUser(String user){
-        this.user = user;
+    public void setName(String name){
+        this.name = name;
     }
     public String getProducts(){
         return codigo;
@@ -57,7 +57,7 @@ public class Venda {
     }
     public JSONObject toJson(List<Venda> arrayToJson){
         JSONObject json = new JSONObject();
-        json.put("user", user);
+        json.put("user", name);
         json.put("products",codigo);
         json.put("finishedSale", totalVendas);
         json.put("entrada", entrada);
@@ -72,7 +72,7 @@ public class Venda {
             var keyJson = 0;
             for (Venda venda : vendaList) {
                 JSONObject js = new JSONObject();
-                js.put("user", venda.getUser());
+                js.put("user", venda.getName());
                 js.put("codigo", venda.getProducts());
                 js.put("totalvendas", venda.gettotalVendas());
                 js.put("discount", venda.getentrada());

@@ -1,0 +1,117 @@
+package senac.java.DAL;
+import senac.java.Services.Conexao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+public class UserDal {
+
+    //Inserir - Create
+
+    public void inserirUsuario(String name, String lastName, String genero, String datanasc,
+                               String email, String estado, String cidade, String cpf, String telefone) throws SQLException{
+        String sql = "INSERT into usuario(name, lastName, genero, datanasc, email, estado, cidade, cpf, telefone ) VALUES(?,?,?,?,?,?,?,?,?)";
+
+        Conexao  conexao = new Conexao();
+
+        try(PreparedStatement statement = conexao.conectar().prepareStatement(sql)){
+            statement.setString(1, name);
+            statement.setString(2, lastName);
+            statement.setString(3, genero);
+            statement.setString(4, datanasc);
+            statement.setString(5, email);
+            statement.setString(6, estado);
+            statement.setString(7, cidade);
+            statement.setString(8, cpf);
+            statement.setString(9, telefone);
+
+            int linhasAfetadas = statement.executeUpdate();
+
+            System.out.println("Foram modificadas " + linhasAfetadas + " no banco de dados");
+
+        }catch(SQLException e){
+            System.out.println("O erro na incerção de dados foi: " + e);
+        }
+    }
+
+    public void listarUsuario(Connection conexao) throws SQLException{
+        String sql = "SELECT * FROM usuario";
+
+        try(PreparedStatement statement = conexao.prepareStatement(sql)){
+            ResultSet result = statement.executeQuery();
+
+            System.out.println("Listagem dos usuários: ");
+
+            while(result.next()){
+               int id = result.getInt("id");
+               String name = result.getString("name");
+               String lastName = result.getString("lastName");
+               String genero = result.getString("genero");
+               String datanasc = result.getString("datanasc");
+               String email = result.getString("email");
+               String estado = result.getString("estado");
+               String cidade = result.getString("cidade");
+               String cpf = result.getString("cpf");
+               String telefone = result.getString("telefone");
+
+
+               System.out.println("id" + id);
+               System.out.println("name" + name);
+               System.out.println("lastName" + lastName);
+               System.out.println("genero" + genero);
+               System.out.println("datanasc" + datanasc);
+               System.out.println("email" + email);
+               System.out.println("estado" + estado);
+               System.out.println("cidade" + cidade);
+               System.out.println("cpf" + cpf);
+               System.out.println("telefone" + telefone);
+               System.out.println(" ");
+
+            }
+        }catch(SQLException e){
+            System.out.println("o erro na listagem foi:" + e);
+        }
+    }
+
+    public void atualizarUsuario(Connection conexao, String name, String lastName, String genero, String datanasc,
+                                 String email, String estado, String cidade, String cpf, String telefone, int id) throws SQLException{
+        String sql = "UPDATE usuario SET name = ?, lastname = ?, genero = ?," +
+                " datanasc = ?, email = ?, estado = ?, cidade= ?, cpf = ?, telefone =? WHERE id = ?";
+
+        try(PreparedStatement statement = conexao.prepareStatement(sql)){
+            statement.setString(1, name);
+            statement.setString(2, lastName);
+            statement.setString(3, genero);
+            statement.setString(4, datanasc);
+            statement.setString(5, email);
+            statement.setString(6, estado);
+            statement.setString(7, cidade);
+            statement.setString(8, cpf);
+            statement.setString(9, telefone);
+            statement.setInt(10, id);
+
+            int linhasAfetadas = statement.executeUpdate();
+
+            System.out.println("Foram modificadas " + linhasAfetadas + " no banco de dados");
+        }catch (SQLException e){
+            System.out.println("O erro na atualização de dados foi: " + e);
+        }
+    }
+
+    public void excluirUsiario(Connection conexao, int id) throws SQLException{
+        String sql = "DELETE FROM usuario WHERE id = ?";
+
+        try(PreparedStatement statement = conexao.prepareStatement(sql)){
+            statement.setInt(1, id);
+
+            int linhasAfetadas = statement.executeUpdate();
+
+            System.out.println("Foram modificadas " + linhasAfetadas + " no banco de dados");
+
+        }catch (SQLException e){
+            System.out.println("O erro na exclusão de dados foi: " + e);
+        }
+    }
+}

@@ -6,15 +6,15 @@ import java.util.ArrayList;
 
 public class Usuarios {
     int id;
-    String name = "";
-    String lastName = "";
-    String genero = "";
-    String datanasc = "";
-    String email = "";
-    String estado = "";
-    String cidade = "";
-    String cpf = "";
-    String telefone = "";
+    public String name = "";
+    public String lastName = "";
+    public String genero = "";
+    public String datanasc = "";
+    public String email = "";
+    public String estado = "";
+    public String cidade = "";
+    public String cpf = "";
+    public String telefone = "";
 
     public Usuarios(){
 

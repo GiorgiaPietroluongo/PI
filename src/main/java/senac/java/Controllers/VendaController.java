@@ -25,7 +25,7 @@ public class VendaController {
 
                 if (!getAllFromArray.isEmpty()) {
                     for (Venda venda : getAllFromArray) {
-                        System.out.println("Nome: " + venda.getUser());
+                        System.out.println("Nome: " + venda.getName());
                         System.out.println("Produtos: " + venda.getProducts());
                         System.out.println("Compra final: " + venda.gettotalVendas());
                         System.out.println("Desconto: " + venda.getentrada());

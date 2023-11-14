@@ -2,10 +2,13 @@ package senac.java.Controllers;
 
 import com.sun.net.httpserver.HttpHandler;
 import org.json.JSONObject;
+import senac.java.DAL.UserDal;
 import senac.java.Domain.Usuarios;
+import senac.java.Services.Conexao;
 import senac.java.Services.ResponseEndPoints;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +22,16 @@ public class UserController {
         @Override
         public void handle(HttpExchange exchange) throws IOException{
             String response = "";
+
+
+
             if("GET".equals(exchange.getRequestMethod())){
 
                 response = "Essa é a rota de usuario - GET";
                 res. enviarResponse(exchange, response,200);
                 usersList.reversed();
             }else if ("POST".equals(exchange.getRequestMethod())) {
+                UserDal userDal = new UserDal();
 
                 try (InputStream requestBody = exchange.getRequestBody()) {
                     JSONObject json = new JSONObject(new String(requestBody.readAllBytes()));
@@ -45,6 +52,9 @@ public class UserController {
                             );
                     usersList.add(user);
                     user.toJson();
+
+                    userDal.inserirUsuario(user.name, user.lastName, user.genero, user.datanasc, user.email, user.estado, user.cidade, user.cpf, user.telefone);
+
                     response = "Dados enviados com sucesso";
 //                    res.enviarResponse(exchange, response, 201);
                     res.enviarResponseJson(exchange, user.toJson(),200);
