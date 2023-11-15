@@ -23,18 +23,24 @@ public class UserController {
         public void handle(HttpExchange exchange) throws IOException{
             String response = "";
 
-
-
             if("GET".equals(exchange.getRequestMethod())){
+                UserDal  userDal = new UserDal();
 
                 response = "Essa é a rota de usuario - GET";
                 res. enviarResponse(exchange, response,200);
                 usersList.reversed();
+
+                try {
+                    userDal.listarUsuario();
+                }catch (Exception e){
+                    System.out.println("O erro foi" + e);
+                }
             }else if ("POST".equals(exchange.getRequestMethod())) {
                 UserDal userDal = new UserDal();
 
                 try (InputStream requestBody = exchange.getRequestBody()) {
                     JSONObject json = new JSONObject(new String(requestBody.readAllBytes()));
+                    int resp = 0;
 
                     Usuarios user = new Usuarios(
 
@@ -53,11 +59,17 @@ public class UserController {
                     usersList.add(user);
                     user.toJson();
 
-                    userDal.inserirUsuario(user.name, user.lastName, user.genero, user.datanasc, user.email, user.estado, user.cidade, user.cpf, user.telefone);
+                   resp = userDal.inserirUsuario(user.name, user.lastName, user.genero, user.datanasc,
+                            user.email, user.estado, user.cidade, user.cpf, user.telefone);
 
-                    response = "Dados enviados com sucesso";
-//                    res.enviarResponse(exchange, response, 201);
-                    res.enviarResponseJson(exchange, user.toJson(),200);
+                    if (resp == 0){
+                        response= "Houve um problema ao criar o usuário";
+                    }else {
+                        response = "Usuário criado com sucesso";
+                    }
+
+                    res.enviarResponse(exchange, response, 201);
+//                    res.enviarResponseJson(exchange, user.toJson(),200);
 
 
                 } catch (Exception e) {
@@ -65,12 +77,27 @@ public class UserController {
                     res.enviarResponse(exchange, resposta, 200);
 
                 }
+
+
 //                res. enviarResponse(exchange, response);
 //                response = "Essa é a rota de usuario - POST";
             } else if ("PUT".equals(exchange.getRequestMethod())) {
+                UserDal userDal = new UserDal();
+                try{
+                    userDal.atualizarUsuario();
+                }catch (Exception e){
+                    System.out.println("O erro foi: " + e);
+                }
+
                 res. enviarResponse(exchange, response,200);
                 response = "Essa e a rota de usuario - PUT";
             } else if ("DELETE".equals(exchange.getRequestMethod())) {
+                UserDal userDal= new UserDal();
+                try {
+                    userDal.excluirUsuario();
+                }catch (Exception e){
+                    System.out.println("O erro foi:" + e);
+                }
                 res. enviarResponse(exchange, response,200);
                 response = "Essa e a rota de usuario - DELETE";
             }else {

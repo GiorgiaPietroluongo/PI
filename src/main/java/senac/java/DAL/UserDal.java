@@ -1,6 +1,5 @@
 package senac.java.DAL;
 import senac.java.Services.Conexao;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -8,15 +7,52 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 public class UserDal {
 
+    public Connection conectar() {
+
+        Connection conexao = null;
+
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=master1";
+            String usuario = "SENACRJEDU/116128412023.1";
+            String senha = "senac@12841";
+
+            conexao = DriverManager.getConnection(url, usuario, senha);
+
+            if (conexao != null) {
+                return conexao;
+
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("O erro foi: " + e);
+
+        } finally {
+
+            try {
+                if (conexao != null && !conexao.isClosed()) {
+                    conexao.close();
+                }
+
+            } catch (SQLException e) {
+                System.out.println("O erro do SQL foi: " + e);
+            }
+
+        }
+        return conexao;
+
+    }
+
     //Inserir - Create
 
-    public void inserirUsuario(String name, String lastName, String genero, String datanasc,
+    public int inserirUsuario(String name, String lastName, String genero, String datanasc,
                                String email, String estado, String cidade, String cpf, String telefone) throws SQLException{
         String sql = "INSERT into usuario(name, lastName, genero, datanasc, email, estado, cidade, cpf, telefone ) VALUES(?,?,?,?,?,?,?,?,?)";
+        int linhasAfetadas = 0;
+        Connection conexao = conectar();
 
-        Conexao  conexao = new Conexao();
-
-        try(PreparedStatement statement = conexao.conectar().prepareStatement(sql)){
+        try(PreparedStatement statement = conexao.prepareStatement(sql)){
             statement.setString(1, name);
             statement.setString(2, lastName);
             statement.setString(3, genero);
@@ -27,20 +63,26 @@ public class UserDal {
             statement.setString(8, cpf);
             statement.setString(9, telefone);
 
-            int linhasAfetadas = statement.executeUpdate();
+             linhasAfetadas = statement.executeUpdate();
 
             System.out.println("Foram modificadas " + linhasAfetadas + " no banco de dados");
 
+            conexao.close();
+            return linhasAfetadas;
         }catch(SQLException e){
             System.out.println("O erro na incerção de dados foi: " + e);
+            conexao.close();
         }
+        conexao.close();
+        return linhasAfetadas;
     }
 
-    public void listarUsuario(Connection conexao) throws SQLException{
+    public ResultSet listarUsuario() throws SQLException{
         String sql = "SELECT * FROM usuario";
+        ResultSet result = null;
 
-        try(PreparedStatement statement = conexao.prepareStatement(sql)){
-            ResultSet result = statement.executeQuery();
+        try(PreparedStatement statement = conectar().prepareStatement(sql)){
+            result = statement.executeQuery();
 
             System.out.println("Listagem dos usuários: ");
 
@@ -70,48 +112,59 @@ public class UserDal {
                System.out.println(" ");
 
             }
+
+            return result;
         }catch(SQLException e){
             System.out.println("o erro na listagem foi:" + e);
         }
+        return result;
     }
 
-    public void atualizarUsuario(Connection conexao, String name, String lastName, String genero, String datanasc,
-                                 String email, String estado, String cidade, String cpf, String telefone, int id) throws SQLException{
+    public int atualizarUsuario() throws SQLException{
         String sql = "UPDATE usuario SET name = ?, lastname = ?, genero = ?," +
                 " datanasc = ?, email = ?, estado = ?, cidade= ?, cpf = ?, telefone =? WHERE id = ?";
+        int linhasAfetadas = 0;
 
-        try(PreparedStatement statement = conexao.prepareStatement(sql)){
-            statement.setString(1, name);
-            statement.setString(2, lastName);
-            statement.setString(3, genero);
-            statement.setString(4, datanasc);
-            statement.setString(5, email);
-            statement.setString(6, estado);
-            statement.setString(7, cidade);
-            statement.setString(8, cpf);
-            statement.setString(9, telefone);
-            statement.setInt(10, id);
+        try(PreparedStatement statement = conectar().prepareStatement(sql)){
+//            statement.setString(1, name);
+//            statement.setString(2, lastName);
+//            statement.setString(3, genero);
+//            statement.setString(4, datanasc);
+//            statement.setString(5, email);
+//            statement.setString(6, estado);
+//            statement.setString(7, cidade);
+//            statement.setString(8, cpf);
+//            statement.setString(9, telefone);
+//            statement.setInt(10, id);
 
-            int linhasAfetadas = statement.executeUpdate();
+            linhasAfetadas = statement.executeUpdate();
 
             System.out.println("Foram modificadas " + linhasAfetadas + " no banco de dados");
+
+            return linhasAfetadas;
         }catch (SQLException e){
             System.out.println("O erro na atualização de dados foi: " + e);
         }
+        return linhasAfetadas;
     }
 
-    public void excluirUsiario(Connection conexao, int id) throws SQLException{
+    public int excluirUsuario() throws SQLException{
         String sql = "DELETE FROM usuario WHERE id = ?";
+        int linhasAfetadas = 0;
 
-        try(PreparedStatement statement = conexao.prepareStatement(sql)){
-            statement.setInt(1, id);
+        try(PreparedStatement statement = conectar().prepareStatement(sql)){
 
-            int linhasAfetadas = statement.executeUpdate();
+//            statement.setInt(1, id);
+
+           linhasAfetadas = statement.executeUpdate();
 
             System.out.println("Foram modificadas " + linhasAfetadas + " no banco de dados");
+            return linhasAfetadas;
 
         }catch (SQLException e){
             System.out.println("O erro na exclusão de dados foi: " + e);
         }
+        return linhasAfetadas;
     }
+
 }
