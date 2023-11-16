@@ -5,7 +5,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class Usuarios {
-    int id;
+    public int id;
     public String name = "";
     public String lastName = "";
     public String genero = "";
@@ -20,7 +20,7 @@ public class Usuarios {
 
     }
     public Usuarios(String name, String lastName, String genero, String datanasc,
-                    String email, String estado, String cidade ,String cpf, String telefone){
+                    String email, String estado, String cidade ,String cpf, String telefone{
         this.name= name;
         this.lastName = lastName;
         this.genero = genero;
@@ -30,6 +30,7 @@ public class Usuarios {
         this.cidade = cidade;
         this.cpf = cpf;
         this.telefone= telefone;
+        this.id = id;
 
 
 
@@ -45,6 +46,7 @@ public class Usuarios {
         json.put("cidade", cidade);
         json.put("cpf", cpf);
         json.put("telefone", telefone);
+
 
         return json;
     }

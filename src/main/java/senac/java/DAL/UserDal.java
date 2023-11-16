@@ -48,7 +48,7 @@ public class UserDal {
 
     public int inserirUsuario(String name, String lastName, String genero, String datanasc,
                                String email, String estado, String cidade, String cpf, String telefone) throws SQLException{
-        String sql = "INSERT into usuario(name, lastName, genero, datanasc, email, estado, cidade, cpf, telefone ) VALUES(?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT into usuario(name, lastName, genero, datanasc, email, estado, cidade, cpf, telefone) VALUES(?,?,?,?,?,?,?,?,?)";
         int linhasAfetadas = 0;
         Connection conexao = conectar();
 
@@ -120,7 +120,8 @@ public class UserDal {
         return result;
     }
 
-    public int atualizarUsuario() throws SQLException{
+    public int atualizarUsuario(String name, String lastname, String genero, String datanasc, String email,
+                                String estado, String cidade, String cpf, String telefone, int id) throws SQLException{
         String sql = "UPDATE usuario SET name = ?, lastname = ?, genero = ?," +
                 " datanasc = ?, email = ?, estado = ?, cidade= ?, cpf = ?, telefone =? WHERE id = ?";
         int linhasAfetadas = 0;
@@ -148,7 +149,7 @@ public class UserDal {
         return linhasAfetadas;
     }
 
-    public int excluirUsuario() throws SQLException{
+    public int excluirUsuario(int id) throws SQLException{
         String sql = "DELETE FROM usuario WHERE id = ?";
         int linhasAfetadas = 0;
 
