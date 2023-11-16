@@ -55,7 +55,7 @@ public class UserController {
                             json.getString("telefone")
 
 
-                            );
+                    );
                     usersList.add(user);
                     user.toJson();
 
@@ -71,14 +71,11 @@ public class UserController {
                     res.enviarResponse(exchange, response, 201);
 //                    res.enviarResponseJson(exchange, user.toJson(),200);
 
-
                 } catch (Exception e) {
                     String resposta = e.toString();
                     res.enviarResponse(exchange, resposta, 200);
 
                 }
-
-
 //                res. enviarResponse(exchange, response);
 //                response = "Essa é a rota de usuario - POST";
             } else if ("PUT".equals(exchange.getRequestMethod())) {
