@@ -144,7 +144,7 @@ public class UserController {
 
 
                     userDal.excluirUsuario(idDelete);
-                } catch (Exception e) {
+                } catch (Exception e) { 
                     System.out.println("O erro foi:" + e);
                 }
                 res.enviarResponse(exchange, response, 200);
