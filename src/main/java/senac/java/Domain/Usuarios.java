@@ -20,7 +20,7 @@ public class Usuarios {
 
     }
     public Usuarios(String name, String lastName, String genero, String datanasc,
-                    String email, String estado, String cidade ,String cpf, String telefone{
+                    String email, String estado, String cidade ,String cpf, String telefone){
         this.name= name;
         this.lastName = lastName;
         this.genero = genero;
